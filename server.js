@@ -1,28 +1,23 @@
+// Imported dotenv and Loaded environment vaiables
 require("dotenv").config();
 
+// Imported Dependencies
 const express = require("express");
 
 const connectDB = require("./config/db");
 
+// Read Configuration
 const PORT = process.env.PORT || 5000;
 
+// Created App
 const app = express();
 
-//Middlewares
+// Middlewares
 app.use(express.json());
 
 // Routes
-app.get("/", (req,res) => {
-    res.json({
-        message: "AI Task Management API Running",
-    });    
-});
 
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-    
-});
 
 // Application Startup
 const startServer = async() => {
