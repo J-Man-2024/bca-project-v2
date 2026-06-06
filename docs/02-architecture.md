@@ -46,3 +46,49 @@
 
         Simplifies maintenance.
  -->
+
+# Architecture
+
+## What is a server?
+
+- Receives requests from clients.
+- Processes business logic.
+- Communicates with database.
+- Returns responses.
+
+## Express Responsibilities
+
+- Routing
+- Middleware
+- Request handling
+- Response handling
+
+## MVC-like flow
+
+```
+Route
+  ↓
+Controller
+  ↓
+Model
+  ↓
+MongoDB
+```
+
+## Request Lifecycle
+
+```
+Browser
+  ↓
+Route
+  ↓
+Middleware
+  ↓
+Controller
+  ↓
+Model
+  ↓
+MongoDB
+  ↓
+Response
+```
