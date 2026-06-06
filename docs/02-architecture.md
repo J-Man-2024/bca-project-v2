@@ -182,3 +182,63 @@ Used for request body data.
 - Parses incoming JSON data.
 - Converts JSON into JavaScript objects.
 - Makes request data available through `req.body`.
+
+## Express Application Lifecycle
+
+```
+Server Starts
+  ↓
+Middleware Registered
+  ↓
+Routes Registered
+  ↓
+Express Listens For Requests
+  ↓
+Request Arrives
+  ↓
+Middleware Executes
+  ↓
+Route Executes
+  ↓
+Response Sent
+```
+
+## Purpose of `app.listen()`
+
+```
+Starts the HTTP server.
+
+Binds the application to a port.
+
+Allows clients to connect and send requests.
+
+Without app.listen(), routes and middleware still exist,
+but the application cannot receive requests.
+```
+
+## Single Responsibility Principle
+
+### Each file should have one primary responsibility.
+
+Examples:
+
+```
+Routes → URL Mapping
+
+Controllers → Business Logic
+
+Models → Data Structure
+
+db.js → Database Connection
+
+.env → Configuration
+
+.gitignore → Repository Exclusions
+```
+
+### Advantages:
+
+- Easier maintenance
+- Easier debugging
+- Better readability
+- Better scalability

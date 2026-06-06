@@ -27,3 +27,29 @@ Project Journal format
     Solution:
         Added Authorization header.
  -->
+
+```
+Date: 06-Jun-2026
+
+Milestone:
+Express Server Setup
+
+What I Built:
+Created the first Express server.
+Added express.json() middleware.
+Created a health-check route.
+
+What I Learned:
+What a server is.
+What Express does.
+Request-response lifecycle.
+Purpose of middleware.
+Purpose of express.json().
+Purpose of app.listen().
+
+Problems Faced:
+CommonJS warning in VS Code.
+
+Solution:
+Kept using CommonJS because it is simpler and sufficient for the project.
+```

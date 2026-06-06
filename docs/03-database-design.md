@@ -42,3 +42,67 @@
         which are easy to work with
         in Node.js applications.
  -->
+
+## Why Mongoose?
+
+- Provides schema definitions.
+- Supports validation.
+- Simplifies database operations.
+- Improves code organization.
+- Supports relationships between collections.
+
+## Database Connection
+
+### Purpose:
+
+- Establish communication between Express and MongoDB.
+- Allow database queries to be executed.
+
+### Why Connect Before Starting Server?
+
+- Prevent requests from reaching an unavailable database.
+- Ensure application readiness before accepting users.
+
+## Environment Variables
+
+### Purpose:
+
+- Store sensitive information outside source code.
+- Prevent accidental exposure of secrets.
+- Allow different configurations for different environments.
+
+Examples:
+
+```
+MONGO_URI
+JWT_SECRET
+GROQ_API_KEY
+```
+
+### Important:
+
+- `.env` files are not encrypted.
+- They are typically excluded from Git using `.gitignore`.
+
+## Fail-Fast Startup Strategy
+
+### Purpose:
+
+- Verify critical services before accepting requests.
+- Prevent runtime failures caused by unavailable databases.
+
+Flow:
+
+```
+Load Environment Variables
+  ↓
+Connect Database
+  ↓
+Start Server
+```
+
+### Advantages:
+
+- Better reliability.
+- Easier debugging.
+- Better user experience.
