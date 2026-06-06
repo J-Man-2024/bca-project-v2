@@ -32,24 +32,85 @@ Project Journal format
 Date: 06-Jun-2026
 
 Milestone:
-Express Server Setup
+    Express Server Setup
 
 What I Built:
-Created the first Express server.
-Added express.json() middleware.
-Created a health-check route.
+    Created the first Express server.
+    Added express.json() middleware.
+    Created a health-check route.
 
 What I Learned:
-What a server is.
-What Express does.
-Request-response lifecycle.
-Purpose of middleware.
-Purpose of express.json().
-Purpose of app.listen().
+
+    What a server is.
+    What Express does.
+    Request-response lifecycle.
+    Purpose of middleware.
+    Purpose of express.json().
+    Purpose of app.listen().
 
 Problems Faced:
-CommonJS warning in VS Code.
+    CommonJS warning in VS Code.
 
 Solution:
-Kept using CommonJS because it is simpler and sufficient for the project.
+    Kept using CommonJS because it is simpler and sufficient for the project.
+```
+
+```
+Date: 06-Jun-2026
+
+Milestone:
+    Database connection setup
+
+What I Learned:
+
+    How to create a new user and password in mongoDB.
+    How to write MONGODB_URI.
+    Why database connections are asynchronous.
+    How Mongoose connects to MongoDB.
+    Purpose of try-catch.
+    Purpose of process.exit(1).
+    Fail-fast startup strategy.
+```
+
+```
+Date: 06-Jun-2026
+
+Architectural Decision
+
+Decision:
+    Database connection logic was moved to config/db.js.
+
+Reason:
+    To separate configuration concerns from server startup logic and improve maintainability.
+
+Advantages:
+
+    Better modularity
+    Easier debugging
+    Cleaner startup flow
+    Reusable database connection code
+
+Professional Principle
+
+This is called:
+
+Fail Fast
+
+    Critical Dependency Missing
+        ↓
+    Stop Immediately
+        ↓
+    Show Error
+        ↓
+    Fix Problem
+        ↓
+    Restart
+
+instead of:
+
+    Critical Dependency Missing
+        ↓
+    Keep Running
+        ↓
+    Generate Random Errors Later
 ```

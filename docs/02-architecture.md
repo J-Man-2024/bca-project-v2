@@ -242,3 +242,49 @@ db.js → Database Connection
 - Easier debugging
 - Better readability
 - Better scalability
+
+## Why Use config/db.js?
+
+### Advantages:
+
+- Improves modularity.
+- Improves readability.
+- Improves maintainability.
+- Supports code reuse.
+- Follows Single Responsibility Principle.
+
+## Why Export connectDB()
+
+### Advantages:
+
+- Improves modularity.
+- Improves reusability.
+- Gives explicit control over startup flow.
+- Prevents automatic connection attempts during import.
+
+## Initialization Order
+
+- Dependencies must be initialized before they are used.
+
+### Examples:
+
+```
+Load .env
+  ↓
+Read Environment Variables
+
+```
+
+```
+Connect Database
+  ↓
+Start Server
+
+```
+
+```
+Register Middleware
+  ↓
+Handle Requests
+
+```

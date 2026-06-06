@@ -106,3 +106,44 @@ Start Server
 - Better reliability.
 - Easier debugging.
 - Better user experience.
+
+## Why Database Connections Are Asynchronous
+
+### Reasons:
+
+- Require network communication.
+- Require authentication.
+- May experience delays.
+- May fail due to connectivity issues.
+
+### Benefits:
+
+- Prevent blocking the application.
+- Allow proper error handling.
+- Improve responsiveness.
+
+## Fail-Fast Principle
+
+### Definition:
+
+- Stop the application immediately when a critical dependency fails.
+
+### Project Usage:
+
+- MongoDB connection failure.
+
+### Implementation:
+
+```
+Connect Database
+    ↓
+Success → Continue Startup
+    ↓
+Failure → process.exit(1)
+```
+
+### Benefits:
+
+- Easier debugging
+- Better reliability
+- Prevents invalid application states

@@ -90,3 +90,43 @@ Now the secret is exposed.
 ### Why use environment variables?
 
 - Environment variables separate sensitive information such as API keys, database credentials, and JWT secrets from source code. This improves security and makes configuration easier across different environments.
+
+### Why is mongoose.connect() asynchronous?
+
+- Database connections involve network communication, authentication, and connection establishment, all of which take time. Therefore Mongoose provides an asynchronous connection method so the application can handle success or failure without blocking execution.
+
+### Why create a separate db.js file instead of placing the connection code in server.js?
+
+- The application would still work if the code were placed directly in server.js, but separating database configuration into db.js improves modularity, readability, maintainability, and follows the single responsibility principle.
+
+### What is Mongoose?
+
+- Mongoose is an ODM library that provides schemas, validation, and simplified MongoDB operations.
+
+### Why is connectDB asynchronous?
+
+- Database connections require network communication and may take time to complete.
+
+### Why use try-catch?
+
+- To handle connection failures and prevent unhandled application errors.
+
+### Why use process.exit(1)?
+
+- To stop the application when a critical dependency (MongoDB) is unavailable, following the fail-fast principle.
+
+### Why should dotenv be configured before accessing environment variables?
+
+- Environment variables must be loaded before they are accessed. Since Node executes code sequentially, accessing process.env before calling dotenv.config() can result in undefined values.
+
+### What modifications were required in server.js to use the database connection module?
+
+- I imported the connectDB function from the configuration module and invoked it during application startup. This ensures that the database connection is established before the application begins handling requests.
+
+### Why did you terminate the application using process.exit(1) when the database connection failed?
+
+- The database is a critical dependency of the application. If the connection cannot be established, most application features will not function correctly. Therefore the application follows a fail-fast approach and terminates immediately to prevent serving requests in an invalid state.
+
+### Why did you set unique: true on email?
+
+- Because email is used as a unique identifier for authentication and we do not want multiple accounts with the same email address.
