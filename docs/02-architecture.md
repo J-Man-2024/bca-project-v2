@@ -92,3 +92,93 @@ MongoDB
   ↓
 Response
 ```
+
+### Route
+
+- Receives requests.
+- Maps URLs to controller functions.
+
+### Controller
+
+- Contains business logic.
+- Processes requests and generates responses.
+
+### Model
+
+- Defines database schema.
+- Handles interaction with MongoDB through Mongoose.
+
+## Request Object (req)
+
+- Contains information about the incoming request.
+- Stores body data, URL parameters, query parameters, and headers.
+- Used by controllers to access client data.
+
+### Common Properties
+
+```
+req.body
+req.params
+req.query
+req.headers
+```
+
+## Response Object (res)
+
+- Used to send data back to the client.
+- Can send text, JSON, status codes, and error messages.
+
+### Common Methods
+
+```
+res.send()
+res.json()
+res.status()
+```
+
+## Request Data Sources
+
+### req.params
+
+Used for URL paramters.
+
+#### Example:
+
+` GET /tasks/123`
+
+#### Access:
+
+` req.params.id`
+
+### req.query
+
+Used for query strings.
+
+#### Example:
+
+` GET /tasks?status=pending`
+
+#### Access:
+
+` req.query.status`
+
+### req.body
+
+Used for request body data.
+
+#### Example:
+
+` POST /login`
+
+#### Access:
+
+` req.body.email`
+` req.body.password`
+
+## express.json() Middleware
+
+### Purpose
+
+- Parses incoming JSON data.
+- Converts JSON into JavaScript objects.
+- Makes request data available through `req.body`.
