@@ -22,3 +22,59 @@
     Why These Metrics Matter
         Explain productivity tracking.
  -->
+# Productivity Dashboard
+
+## Dashboard Statistics
+
+### Objective
+
+- Provide a quick overview of the user's productivity.
+
+### Metrics
+
+- Total Tasks
+- Completed Tasks
+- Pending Tasks
+- Completion Percentage
+
+### Design Decision
+
+- Calculations are performed on the backend.
+
+### Reason
+
+- Keeps frontend simple
+- Centralizes business logic
+- Improves reusability
+- Easier to maintain
+
+## Dashboard Statistics API
+
+### Endpoint
+
+`GET /api/dashboard/stats`
+
+### Purpose
+
+- Provides a summary of user productivity.
+
+### Returned Metrics
+
+- Total Tasks
+- Completed Tasks
+- Pending Tasks
+- Completion Percentage
+
+### Security
+
+- Requires JWT authentication.
+
+### Design Decision
+
+- Statistics are calculated on the backend rather than the frontend.
+
+### Reason
+
+- Keeps frontend simple
+- Centralizes business logic
+- Improves maintainability
