@@ -129,3 +129,26 @@ What I Learned
     Models communicate with MongoDB.
     Responses are sent back from controllers using res.json().
 ```
+
+```
+Date: 07-Jun-2026
+
+Design Decision:
+    Limited Refactoring
+
+Decision:
+
+    Kept ownership verification logic directly inside controllers instead of creating helper functions.
+
+Reason:
+
+    Improves readability.
+    Easier debugging.
+    Simpler project structure.
+    Easier to explain during viva.
+
+Trade-off:
+
+    Small amount of code duplication.
+    Accepted because the logic appears in only a few locations.
+```

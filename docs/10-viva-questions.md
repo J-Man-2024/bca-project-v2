@@ -176,3 +176,11 @@ However, for password length specifically, once you're storing hashes, schema `m
 ### Why did the status field appear even though it wasn't supplied during task creation?
 
 - The status field has a default value defined in the schema. When no value is provided, Mongoose automatically assigns the default value before saving the document.
+
+### What is the difference between applying middleware at the route level and router level?
+
+- Route-level middleware protects specific routes individually, while router-level middleware applies to all routes defined after router.use(). Router-level middleware reduces code duplication when multiple routes require the same middleware.
+
+### Why can't we compare MongoDB ObjectIds using ===?
+
+- MongoDB ObjectIds are objects, not primitive values. The `===` operator compares object references, not their contents. Therefore, two ObjectIds with the same value may not be equal using `===`. We convert them to strings (or use `.equals()`) before comparing.
