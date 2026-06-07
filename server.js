@@ -6,6 +6,8 @@ const express = require("express");
 
 const connectDB = require("./config/db");
 
+const authRoutes = require("./routes/authRoutes");
+
 // Read Configuration
 const PORT = process.env.PORT || 5000;
 
@@ -16,7 +18,7 @@ const app = express();
 app.use(express.json());
 
 // Routes
-
+app.use("/api/auth", authRoutes);
 
 
 // Application Startup

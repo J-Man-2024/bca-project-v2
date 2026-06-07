@@ -114,3 +114,18 @@ instead of:
         ↓
     Generate Random Errors Later
 ```
+
+```
+Date: 06-Jun-2026
+
+Milestone:
+    Authentication
+
+What I Learned
+
+    server.js receives requests and forwards them to route files.
+    Routes determine which controller function should execute.
+    Controllers contain business logic.
+    Models communicate with MongoDB.
+    Responses are sent back from controllers using res.json().
+```
