@@ -41,3 +41,26 @@
         Protected routes
         Token verification
  -->
+
+# Authentication
+
+## User Registration
+
+### Objective
+
+- Allow new users to create an account.
+
+### Implementation
+
+- Validate input.
+- Check duplicate email.
+- Hash password using bcrypt.
+- Store user in MongoDB.
+
+### Security
+
+- Passwords are never stored in plain text.
+
+### Limitation
+
+- Email verification is not implemented.

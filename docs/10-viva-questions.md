@@ -130,3 +130,25 @@ Now the secret is exposed.
 ### Why did you set unique: true on email?
 
 - Because email is used as a unique identifier for authentication and we do not want multiple accounts with the same email address.
+
+### Why validate in both controller and model?
+
+- Controller validation provides immediate user feedback, while model validation ensures invalid data cannot be stored in the database even if controller validation is bypassed.
+
+### Why Keep minlength In The Schema Then?
+
+Even though it doesn't help much in this specific flow, model validation is still valuable because:
+
+```
+Controller A
+Controller B
+Script
+Seeder
+Future Code
+```
+
+might all create users.
+
+The model acts as a final safety layer.
+
+However, for password length specifically, once you're storing hashes, schema `minlength` becomes much less useful because the stored value is always long.
