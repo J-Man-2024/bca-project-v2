@@ -78,3 +78,18 @@
 - Keeps frontend simple
 - Centralizes business logic
 - Improves maintainability
+
+## Analytics Data Tracking
+
+- A new field completedAt was added to the Task model.
+
+### Purpose:
+
+- Track when tasks are completed.
+- Support weekly completion analytics.
+- Improve accuracy of productivity reports.
+
+### Design Decision:
+
+- completedAt is set when a task becomes Completed.
+- completedAt is reset to null when a task becomes Pending.

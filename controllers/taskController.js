@@ -101,7 +101,17 @@ const updateTask = async (req, res) => {
 		}
 
 		if (req.body.status !== undefined) {
-			task.status = req.body.status;
+			const currentStatus = task.status;
+			const newStatus = req.body.status;
+
+			if (currentStatus === "Pending" && newStatus === "Completed") {
+				task.completedAt = new Date();
+			}
+
+			if (currentStatus === "Completed" && newStatus === "Pending") {
+				task.completedAt = null;
+			}
+			task.status = newStatus;
 		}
 
 		const updatedTask = await task.save();
