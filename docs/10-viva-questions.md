@@ -172,3 +172,7 @@ However, for password length specifically, once you're storing hashes, schema `m
 ### Why is JWT authentication alone not enough when deleting tasks?
 
 - JWT authentication verifies the identity of the user, but it does not verify ownership of a resource. Before updating or deleting a task, the application must check whether the task belongs to the authenticated user.
+
+### Why did the status field appear even though it wasn't supplied during task creation?
+
+- The status field has a default value defined in the schema. When no value is provided, Mongoose automatically assigns the default value before saving the document.
