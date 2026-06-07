@@ -6,6 +6,8 @@ const express = require("express");
 
 const connectDB = require("./config/db");
 
+const { protect } = require("./middleware/authMiddleware");
+
 const authRoutes = require("./routes/authRoutes");
 
 // Read Configuration
@@ -20,14 +22,13 @@ app.use(express.json());
 // Routes
 app.use("/api/auth", authRoutes);
 
-
 // Application Startup
-const startServer = async() => {
-    await connectDB();
+const startServer = async () => {
+	await connectDB();
 
-    app.listen(PORT, () => {
-        console.log(`Server is running on port ${PORT}`);        
-    })
-}
+	app.listen(PORT, () => {
+		console.log(`Server is running on port ${PORT}`);
+	});
+};
 
 startServer();

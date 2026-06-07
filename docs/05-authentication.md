@@ -82,3 +82,21 @@
 
 - Password hashes are never exposed.
 - JWT is signed using a secret key.
+
+## Route Protection
+
+### Objective
+
+- Restrict access to authenticated users only.
+
+### Implementation
+
+- Read JWT from Authorization header.
+- Verify token.
+- Load user from database.
+- Attach user to request object.
+- Continue using next().
+
+### Security Benefit
+
+- Unauthenticated users cannot access protected resources.

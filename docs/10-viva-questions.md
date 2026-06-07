@@ -156,3 +156,11 @@ However, for password length specifically, once you're storing hashes, schema `m
 ### Why do you return "Invalid credentials" instead of "Email not found" or "Incorrect password"?
 
 - Returning a generic authentication error prevents user enumeration attacks. An attacker cannot determine whether an email address exists in the system, which improves security.
+
+### Why is JWT typically sent in the Authorization header?
+
+- JWT represents authentication information rather than application data. The Authorization header is the standard location for transmitting authentication credentials in REST APIs, and it avoids exposing tokens in URLs.
+
+### What is the purpose of next() in Express middleware?
+
+- The next() function passes control to the next middleware or route handler in the request-response cycle. Without calling next(), the request stops at the current middleware unless a response is sent.
