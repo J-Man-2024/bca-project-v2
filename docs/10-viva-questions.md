@@ -164,3 +164,11 @@ However, for password length specifically, once you're storing hashes, schema `m
 ### What is the purpose of next() in Express middleware?
 
 - The next() function passes control to the next middleware or route handler in the request-response cycle. Without calling next(), the request stops at the current middleware unless a response is sent.
+
+### Why did you add a user field in the Task schema?
+
+- The user field establishes ownership of tasks. It allows the application to retrieve only the tasks belonging to the authenticated user and prevents users from accessing each other's data.
+
+### Why is JWT authentication alone not enough when deleting tasks?
+
+- JWT authentication verifies the identity of the user, but it does not verify ownership of a resource. Before updating or deleting a task, the application must check whether the task belongs to the authenticated user.
