@@ -64,3 +64,21 @@
 ### Limitation
 
 - Email verification is not implemented.
+
+## User Login
+
+### Objective
+
+- Allow registered users to access their account.
+
+### Implementation
+
+- Verify email exists.
+- Compare password using bcrypt.
+- Generate JWT token.
+- Return token to client.
+
+### Security
+
+- Password hashes are never exposed.
+- JWT is signed using a secret key.

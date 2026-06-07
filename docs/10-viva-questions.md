@@ -152,3 +152,7 @@ might all create users.
 The model acts as a final safety layer.
 
 However, for password length specifically, once you're storing hashes, schema `minlength` becomes much less useful because the stored value is always long.
+
+### Why do you return "Invalid credentials" instead of "Email not found" or "Incorrect password"?
+
+- Returning a generic authentication error prevents user enumeration attacks. An attacker cannot determine whether an email address exists in the system, which improves security.
