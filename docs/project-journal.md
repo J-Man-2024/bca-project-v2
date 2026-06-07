@@ -152,3 +152,19 @@ Trade-off:
     Small amount of code duplication.
     Accepted because the logic appears in only a few locations.
 ```
+
+```
+Design Decision: 
+    Dashboard vs Analytics Separation
+
+Decision:
+
+    Dashboard statistics and analytics chart data are handled by separate controllers and routes.
+
+Reason:
+
+    Dashboard focuses on summary metrics.
+    Analytics focuses on chart visualization data.
+    Improves organization and maintainability.
+    Easier to explain during viva.
+```

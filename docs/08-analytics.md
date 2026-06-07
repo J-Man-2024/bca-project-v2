@@ -25,3 +25,14 @@
     Why Chart.js?
         Document reasoning.
  -->
+# Analytics API
+
+### Endpoint:
+GET `/api/analytics`
+
+### Purpose:
+- Provides chart-ready data for dashboard visualizations.
+
+### Current Analytics:
+- Status Distribution
+- Category Distribution

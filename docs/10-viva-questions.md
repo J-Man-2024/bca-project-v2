@@ -184,3 +184,7 @@ However, for password length specifically, once you're storing hashes, schema `m
 ### Why can't we compare MongoDB ObjectIds using ===?
 
 - MongoDB ObjectIds are objects, not primitive values. The `===` operator compares object references, not their contents. Therefore, two ObjectIds with the same value may not be equal using `===`. We convert them to strings (or use `.equals()`) before comparing.
+
+### Why did you separate statistics and analytics?
+
+- Statistics provide high-level productivity metrics, while analytics provide chart-specific data. Keeping them separate improves organization, readability, and maintainability.
