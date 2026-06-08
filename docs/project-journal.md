@@ -154,7 +154,7 @@ Trade-off:
 ```
 
 ```
-Design Decision: 
+Design Decision:
     Dashboard vs Analytics Separation
 
 Decision:
@@ -167,4 +167,28 @@ Reason:
     Analytics focuses on chart visualization data.
     Improves organization and maintainability.
     Easier to explain during viva.
+```
+
+```
+Date: 08-Jun-2026
+
+    ✅ Authentication
+
+    ✅ JWT Authorization
+
+    ✅ User-specific Tasks
+
+    ✅ Task CRUD
+
+    ✅ Ownership Checks
+
+    ✅ Analytics
+
+    ✅ Filtering
+
+    ✅ Sorting
+
+    ✅ Pagination
+
+    ✅ Dashboard Statistics
 ```
