@@ -163,3 +163,36 @@ sort[req.query.sortBy] =
 - Better task organization
 - Improved dashboard usability
 - Supports future frontend sorting controls
+
+## Searching
+
+### Purpose
+
+Allow users to quickly locate tasks by keywords.
+
+### Endpoint
+
+`GET /api/tasks?search=keyword`
+
+### Fields Searched
+
+- title
+- description
+
+### Implementation
+
+Uses MongoDB:
+
+```
+    $or
+    $regex
+    $options: "i"
+```
+
+to perform case-insensitive matching.
+
+### Benefits
+
+- Faster task discovery
+- Better user experience
+- Works with existing filtering, sorting, and pagination
