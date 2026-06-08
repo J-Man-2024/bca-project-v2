@@ -27,6 +27,34 @@ const getAnalytics = async (req, res) => {
 			category: "Work",
 		});
 
+		const completedTasksData = await Task.find({
+			user: req.user._id,
+			status: "Completed",
+			completedAt: {
+				$ne: null,
+			},
+		});
+
+		const weeklyCompletion = {
+			Sun: 0,
+			Mon: 0,
+			Tue: 0,
+			Wed: 0,
+			Thu: 0,
+			Fri: 0,
+			Sat: 0,
+		};
+
+		const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+		for (const task of completedTasksData) {
+			const dayIndex = task.completedAt.getDay();
+
+			const dayName = days[dayIndex];
+
+			weeklyCompletion[dayName]++;
+		}
+
 		res.status(200).json({
 			statusDistribution: {
 				completed: completedTasks,
@@ -38,6 +66,8 @@ const getAnalytics = async (req, res) => {
 				Personal: personalTasks,
 				Work: workTasks,
 			},
+
+			weeklyCompletion,
 		});
 	} catch (error) {
 		res.status(500).json({

@@ -26,6 +26,7 @@
         Task ownership enforced
         through user ID reference.
  -->
+
 # Task Mangement
 
 ## Task Ownership
@@ -93,3 +94,72 @@
 ### Limitation
 
 - Deleted tasks cannot be recovered.
+
+## Task Filtering
+
+### Purpose
+
+- Allow users to retrieve specific tasks instead of loading all tasks.
+
+### Supported Filters
+
+- `GET /api/tasks?status=Completed`
+- `GET /api/tasks?category=Study`
+- `GET /api/tasks?priority=High`
+
+### Combined Filters
+
+- `GET /api/tasks?status=Completed&category=Study`
+
+### Implementation
+
+- The backend dynamically builds a MongoDB filter object using query parameters.
+
+### Example:
+
+```
+const filter = {
+    user: req.user._id,
+};
+```
+
+Additional fields are added only when query parameters are supplied.
+
+### Benefits
+
+- Reduces unnecessary data transfer
+- Simplifies frontend logic
+- Improves user experience
+
+## Task Sorting
+
+### Purpose
+
+- Allow tasks to be returned in a meaningful order.
+
+### Supported Queries
+
+Newest first.
+
+- `GET /api/tasks?sortBy=createdAt&order=desc`
+
+Oldest first.
+
+- `GET /api/tasks?sortBy=createdAt&order=asc`
+
+### Implementation
+
+Dynamic sort object:
+
+```
+const sort = {};
+
+sort[req.query.sortBy] =
+    req.query.order === "desc" ? -1 : 1;
+```
+
+### Benefits
+
+- Better task organization
+- Improved dashboard usability
+- Supports future frontend sorting controls

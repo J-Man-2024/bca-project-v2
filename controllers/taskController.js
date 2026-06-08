@@ -28,11 +28,44 @@ const createTask = async (req, res) => {
 
 const getTasks = async (req, res) => {
 	try {
-		const tasks = await Task.find({
-			user: req.user._id,
-		});
+		const page = Number(req.query.page) || 1;
 
-		res.status(200).json(tasks);
+		const limit = Number(req.query.limit) || 10;
+
+		const skip = (page - 1) * limit;
+
+		const filter = {
+			user: req.user._id,
+		};
+		if (req.query.status) {
+			filter.status = req.query.status;
+		}
+		if (req.query.category) {
+			filter.category = req.query.category;
+		}
+		if (req.query.priority) {
+			filter.priority = req.query.priority;
+		}
+
+		const sort = {};
+
+		if (req.query.sortBy) {
+			sort[req.query.sortBy] = req.query.order === "desc" ? -1 : 1;
+		}
+
+		const totalTasks = await Task.countDocuments(filter);
+		const totalPages = Math.ceil(totalTasks / limit);
+		const tasks = await Task.find(filter)
+			.sort(sort)
+			.skip(skip)
+			.limit(limit);
+
+		res.status(200).json({
+			tasks,
+			currentPage: page,
+			totalPages,
+			totalTasks,
+		});
 	} catch (error) {
 		res.status(500).json({
 			message: error.message,
