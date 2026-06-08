@@ -47,6 +47,22 @@ const getTasks = async (req, res) => {
 			filter.priority = req.query.priority;
 		}
 
+		if (req.query.search) {
+			filter.$or = [
+				{
+					title: {
+						$regex: req.query.search,
+						$options: "i",
+					},
+				},
+				{
+					description: {
+						$regex: req.query.search,
+						$options: "i",
+					},
+				},
+			];
+		}
 		const sort = {};
 
 		if (req.query.sortBy) {
