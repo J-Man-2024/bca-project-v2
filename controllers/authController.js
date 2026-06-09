@@ -13,7 +13,7 @@ const registerUser = async (req, res) => {
 		const { name, email, password } = req.body;
 
 		if (!name || !email || !password) {
-			res.status(400).json({
+			return res.status(400).json({
 				message: "All fields are required",
 			});
 		}
@@ -21,7 +21,7 @@ const registerUser = async (req, res) => {
 		const userExists = await User.findOne({ email });
 
 		if (userExists) {
-			res.status(400).json({
+			return res.status(400).json({
 				message: "Email already exists",
 			});
 		}
@@ -62,7 +62,7 @@ const loginUser = async (req, res) => {
 		const { email, password } = req.body;
 
 		if (!email || !password) {
-			res.status(400).json({
+			return res.status(400).json({
 				message: "Email and Password are required",
 			});
 		}
@@ -70,7 +70,7 @@ const loginUser = async (req, res) => {
 		const user = await User.findOne({ email });
 
 		if (!user) {
-			res.status(401).json({
+			return res.status(401).json({
 				message: "Invalid credentials",
 			});
 		}
@@ -78,7 +78,7 @@ const loginUser = async (req, res) => {
 		const isMatch = await bcrypt.compare(password, user.password);
 
 		if (!isMatch) {
-			res.status(401).json({
+			return res.status(401).json({
 				message: "Invalid credentials",
 			});
 		}
