@@ -288,3 +288,27 @@ Register Middleware
 Handle Requests
 
 ```
+
+## Frontend Design Decision
+
+Feature-based separation using:
+
+- Pages
+- Services
+- Utils
+- Components
+- Authentication Decision
+
+JWT stored in localStorage.
+
+### Protected Pages
+
+Token verification before page access.
+
+### Analytics Design
+
+Chart.js visualization using backend-generated analytics.
+
+### AI Design
+
+Groq API consumed through backend layer.

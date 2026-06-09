@@ -1,0 +1,103 @@
+/* Google font Monsterrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Global Css Reset */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variables */
+:root {
+     --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+
+    --success-color: #22c55e;
+    --warning-color: #f59e0b;
+    --danger-color: #ef4444;
+
+    --background-color: #f8fafc;
+    --surface-color: #ffffff;
+
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+
+    --border-color: #e2e8f0;
+
+    --border-radius: 0.75rem;
+
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+/* Base */
+body {    
+    font-family: "Monsterrat", sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    min-height: 100vh;
+    font-optical-sizing: auto;
+    font-size: 1rem;
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Lists */
+ul {
+    list-style: none;
+}
+
+/* Base Container */
+.container {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* Button Utility */
+button {
+    border: none;
+    cursor: pointer;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--border-radius);
+
+    font: inherit;
+
+    transition: 0.2s ease;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+}
+
+/* Form Utility */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font: inherit;
+}
