@@ -188,3 +188,7 @@ However, for password length specifically, once you're storing hashes, schema `m
 ### Why did you separate statistics and analytics?
 
 - Statistics provide high-level productivity metrics, while analytics provide chart-specific data. Keeping them separate improves organization, readability, and maintainability.
+
+### How did your frontend communicate with the backend?
+
+-The frontend was served as static files through Express. Since both frontend and backend were hosted on the same server, API requests were made using relative URLs, avoiding cross-origin issues.
