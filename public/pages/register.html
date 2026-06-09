@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/auth.css">
+
+    <title>Task Management System - Register</title>
+</head>
+<body>
+
+  <main>
+      <div class="auth-container">
+
+        <div class="auth-card">
+
+            <div class="auth-header">
+                <h1>Create Account</h1>
+                <p>Start managing your productivity</p>
+            </div>
+
+            <form 
+            class="auth-form" 
+            id="register-form"
+            >
+
+                <div class="input-group">
+                    <label for="name">
+                        Name
+                    </label>
+
+                    <input 
+                    name="name"
+                    type="text" 
+                    id="name" 
+                    class="input" 
+                    placeholder="Enter your name"
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input 
+                    name="email"
+                    type="email" 
+                    id="email" 
+                    class="input" 
+                    placeholder="Enter your email"
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input 
+                    name="password"
+                    class="input" 
+                    type="password" 
+                    id="password" 
+                    placeholder="Create a password"
+                    >
+                </div>
+
+                <div 
+                class="error-message" 
+                id="error-message"
+                >
+                </div>
+
+                <button 
+                type="submit" 
+                class="btn btn-primary" 
+                id="register-btn"
+                >
+                    Register
+                </button>
+
+            </form>
+
+            <div class="auth-footer">
+
+                <p>
+                    Already have an account?
+                    <a href="./login.html">
+                        Login
+                    </a>
+                </p>
+
+            </div>
+
+        </div>
+
+      </div>
+      
+  </main>
+
+</body>
+</html>

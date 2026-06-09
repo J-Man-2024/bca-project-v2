@@ -8,15 +8,87 @@
 
     <link rel="stylesheet" href="../assets/css/auth.css">
 
-    <title>Login</title>
+    <title>Task Management System - Login</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Login Page</h1>
 
-        <button class="btn btn-primary">
-            Test Button
-        </button>
-    </div>
+  <main>
+      <div class="auth-container">
+
+        <div class="auth-card">
+
+            <div class="auth-header">
+                <h1>Welcome Back</h1>
+                <p>Login to manage your tasks</p>
+            </div>
+
+            <form 
+            class="auth-form" 
+            id="login-form"
+            >
+
+                <div class="input-group">
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input 
+                    name="email"
+                    type="email" 
+                    id="email" 
+                    class="input" 
+                    placeholder="Enter your email" 
+                    required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input 
+                    name="password"
+                    class="input" 
+                    type="password" 
+                    id="password" 
+                    placeholder="Enter your password" 
+                    required
+                    >
+                </div>
+
+                <div 
+                class="error-message" 
+                id="error-message"
+                >
+                </div>
+
+                <button 
+                type="submit" 
+                class="btn btn-primary" 
+                id="login-btn"
+                >
+                    Login
+                </button>
+
+            </form>
+
+            <div class="auth-footer">
+
+                <p>
+                    Don't have an account?
+                    <a href="./register.html">
+                        Register
+                    </a>
+                </p>
+
+            </div>
+
+        </div>
+
+      </div>
+      
+  </main>
+ 
 </body>
 </html>
