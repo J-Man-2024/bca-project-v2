@@ -1,11 +1,14 @@
-<header>
-      Navbar
-  </header>
+### Objective
 
-  <main>
-      Page Content
-  </main>
+Display task statistics to authenticated users.
 
-  <footer>
-      Footer
-  </footer>
+### Design Decision
+
+Separated UI logic and API communication using Page and Service layers.
+
+### Advantages
+
+- Modular structure
+- Easier maintenance
+- Code reusability
+- Better debugging

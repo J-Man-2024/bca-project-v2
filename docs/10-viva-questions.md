@@ -192,3 +192,19 @@ However, for password length specifically, once you're storing hashes, schema `m
 ### How did your frontend communicate with the backend?
 
 -The frontend was served as static files through Express. Since both frontend and backend were hosted on the same server, API requests were made using relative URLs, avoiding cross-origin issues.
+
+### Why do we use JWT?
+
+- To authenticate users without maintaining server-side sessions.
+
+### Why store the token in localStorage?
+
+- To persist login state between page refreshes.
+
+### Why create analyticsService.js instead of using fetch directly inside dashboard.js?
+
+- To separate business logic from API communication and improve maintainability.
+
+### Why protect dashboard routes?
+
+- To ensure only authenticated users can access personal task statistics.
