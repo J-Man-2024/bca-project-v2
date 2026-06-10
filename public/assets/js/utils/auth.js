@@ -4,7 +4,7 @@ export function checkAuth() {
 	const token = getToken();
 
 	if (!token) {
-		window.location.href = "/public/pages/login.html";
+		window.location.href = "/pages/login.html";
 
 		return false;
 	}
@@ -14,5 +14,5 @@ export function checkAuth() {
 
 export function logout() {
 	removeToken();
-	window.location.href = "/public/pages/login.html";
+	window.location.href = "/pages/login.html";
 }

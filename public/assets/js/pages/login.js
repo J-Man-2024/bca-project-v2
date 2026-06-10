@@ -33,7 +33,7 @@ async function handleLogin(e) {
 	try {
 		const data = await loginUser(credentials);
 		saveToken(data.token);
-		window.location.href = "/public/pages/dashboard.html";
+		window.location.href = "/pages/dashboard.html";
 	} catch (error) {
 		errorMessage.textContent = error.message;
 		errorMessage.style.display = "block";

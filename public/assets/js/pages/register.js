@@ -37,7 +37,7 @@ async function handleRegister(e) {
 
 	try {
 		const data = await registerUser(userData);
-		window.location.href = "/public/pages/login.html";
+		window.location.href = "/pages/login.html";
 	} catch (error) {
 		errorMessage.textContent = error.message;
 		errorMessage.style.display = "block";
