@@ -133,10 +133,6 @@ const updateTask = async (req, res) => {
 			task.title = req.body.title;
 		}
 
-		if (req.body.description !== undefined) {
-			task.description = req.body.description;
-		}
-
 		if (req.body.category !== undefined) {
 			task.description = req.body.description;
 		}

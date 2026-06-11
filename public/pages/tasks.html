@@ -146,6 +146,120 @@
             </div>
 
         </div>
+
+        <div class="modal hidden" id="task-modal">
+            <div class="modal-content">
+                <h2>Create Task</h2>
+
+                <form id="tasks-form">
+                    <div class="input-group">
+                        <label for="title">
+                            Title
+                        </label>
+
+                        <input 
+                        type="text" 
+                        name="title" 
+                        id="title" 
+                        class="input" 
+                        placeholder="Enter task title"
+                        >
+                    </div>
+
+                    <div class="input-group">
+                        <label for="description">
+                            Description
+                        </label>
+
+                        <textarea 
+                        name="description" 
+                        id="description" 
+                        rows="4" 
+                        class="input" 
+                        placeholder="Enter task description"
+                        >
+                        </textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="category">
+                            Category
+                        </label>
+
+                        <select name="category" 
+                        id="category" 
+                        class="input"
+                        >
+                            <option 
+                            value="Study"
+                            >
+                                Study
+                            </option>
+                            
+                            <option 
+                            value="Personal"
+                            >
+                                Personal
+                            </option>
+                            <option 
+                            value="Work"
+                            >
+                                Work
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label 
+                        for="priority"
+                        >
+                            Priority
+                        </label>
+
+                        <select 
+                        name="priority" 
+                        id="priority" 
+                        class="input"
+                        >
+                            <option 
+                            value="Low"
+                            >
+                                Low
+                            </option>
+                            <option 
+                            value="Medium"
+                            >
+                                Medium
+                            </option>
+                            <option 
+                            value="High"
+                            >
+                                High
+                            </option>
+                        </select>
+                    </div>
+
+                    <div 
+                    class="modal-buttons"
+                    >
+                        <button 
+                        type="submit" 
+                        class="btn btn-primary"
+                        >
+                            Create
+                        </button>
+
+                        <button 
+                        type="button" 
+                        class="btn" 
+                        id="cancel-btn"
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </main>
 </body>
 </html>
