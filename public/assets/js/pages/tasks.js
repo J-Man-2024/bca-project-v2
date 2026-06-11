@@ -36,22 +36,35 @@ const categoryFilter = document.getElementById("category-filter");
 const priorityFilter = document.getElementById("priority-filter");
 const sortFilter = document.getElementById("sort-filter");
 
+const prevBtn = document.getElementById("prev-page-btn");
+const nextBtn = document.getElementById("next-page-btn");
+const pageInfo = document.getElementById("current-page");
+
 let editingTaskId = null;
 
 let allTasks = [];
 
 let currentSearch = "";
+
 let currentStatus = "";
 let currentCategory = "";
 let currentPriority = "";
+
 let currentSortBy = "";
 let currentOrder = "";
+
+let currentPage = 1;
+const limit = 10;
+let totalPages = 1;
 
 searchInput.addEventListener("input", handleSearch);
 statusFilter.addEventListener("change", handleFilters);
 categoryFilter.addEventListener("change", handleFilters);
 priorityFilter.addEventListener("change", handleFilters);
 sortFilter.addEventListener("change", handleSort);
+
+prevBtn.addEventListener("click", goToPreviousPage);
+nextBtn.addEventListener("click", goToNextPage);
 
 async function loadTasks() {
 	try {
@@ -62,11 +75,15 @@ async function loadTasks() {
 			priority: currentPriority,
 			sortBy: currentSortBy,
 			order: currentOrder,
+			page: currentPage,
+			limit,
 		});
 
 		allTasks = data.tasks;
+		totalPages = data.totalPages;
 
 		renderTasks(allTasks);
+		updatePagination();
 	} catch (error) {
 		console.error(error);
 	}
@@ -164,7 +181,7 @@ function closeModal() {
 
 function handleSearch() {
 	currentSearch = searchInput.value.trim();
-
+	currentPage = 1;
 	loadTasks();
 }
 
@@ -172,7 +189,7 @@ function handleFilters() {
 	currentStatus = statusFilter.value;
 	currentCategory = categoryFilter.value;
 	currentPriority = priorityFilter.value;
-
+	currentPage = 1;
 	loadTasks();
 }
 
@@ -185,8 +202,30 @@ function handleSort() {
 	} else {
 		[currentSortBy, currentOrder] = value.split("-");
 	}
-
+	currentPage = 1;
 	loadTasks();
+}
+
+function updatePagination() {
+	pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+
+	prevBtn.disabled = currentPage === 1;
+
+	nextBtn.disabled = currentPage === totalPages;
+}
+
+function goToPreviousPage() {
+	if (currentPage > 1) {
+		currentPage--;
+		loadTasks();
+	}
+}
+
+function goToNextPage() {
+	if (currentPage < totalPages) {
+		currentPage++;
+		loadTasks();
+	}
 }
 
 function renderTasks(tasks) {
