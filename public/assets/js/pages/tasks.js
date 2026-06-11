@@ -1,5 +1,5 @@
 import { checkAuth, logout } from "../utils/auth.js";
-import { getTasks } from "../services/taskService.js";
+import { getTasks, createTask } from "../services/taskService.js";
 
 checkAuth();
 
@@ -9,16 +9,43 @@ const createTaskBtn = document.getElementById("create-task-btn");
 const taskModal = document.getElementById("task-modal");
 const cancelBtn = document.getElementById("cancel-btn");
 
+const taskForm = document.getElementById("tasks-form");
+const titleInput = document.getElementById("title");
+const descriptionInput = document.getElementById("description");
+const categoryInput = document.getElementById("category");
+const priorityInput = document.getElementById("priority");
+
 logoutBtn.addEventListener("click", logout);
 createTaskBtn.addEventListener("click", openModal);
 cancelBtn.addEventListener("click", closeModal);
 taskModal.addEventListener("click", outsideClose);
+taskForm.addEventListener("submit", handleCreateTask);
 
 async function loadTasks() {
 	try {
 		const data = await getTasks();
 
 		renderTasks(data.tasks);
+	} catch (error) {
+		console.error(error);
+	}
+}
+
+async function handleCreateTask(e) {
+	e.preventDefault();
+
+	const taskData = {
+		title: titleInput.value.trim(),
+		description: descriptionInput.value.trim(),
+		category: categoryInput.value,
+		priority: priorityInput.value,
+	};
+
+	try {
+		await createTask(taskData);
+		closeModal();
+		taskForm.reset();
+		loadTasks();
 	} catch (error) {
 		console.error(error);
 	}
@@ -60,7 +87,8 @@ function renderTasks(tasks) {
                     </button>
 
                     <button 
-                    class="btn btn-primary"
+                    class="btn btn-primary delete-btn" 
+                    data-id=${task._id}
                     >
                         Delete
                     </button>

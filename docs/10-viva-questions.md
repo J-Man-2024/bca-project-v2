@@ -208,3 +208,7 @@ However, for password length specifically, once you're storing hashes, schema `m
 ### Why protect dashboard routes?
 
 - To ensure only authenticated users can access personal task statistics.
+
+### Why Reload After Creating?
+
+- After successfully creating a task, the application requests the latest tasks from the server and re-renders the UI to ensure consistency between the frontend and database.
