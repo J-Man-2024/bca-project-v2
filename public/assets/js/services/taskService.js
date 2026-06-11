@@ -59,3 +59,25 @@ export async function deleteTask(taskId) {
 
 	return data;
 }
+
+export async function updateTask(taskId, taskData) {
+	const token = getToken();
+
+	const response = await fetch(`${API_BASE_URL}/tasks/${taskId}`, {
+		method: "PUT",
+
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+		body: JSON.stringify(taskData),
+	});
+
+	const data = await response.json();
+
+	if (!response.ok) {
+		throw new Error(data.message);
+	}
+
+	return data;
+}

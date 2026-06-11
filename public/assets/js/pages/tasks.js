@@ -1,5 +1,10 @@
 import { checkAuth, logout } from "../utils/auth.js";
-import { getTasks, createTask, deleteTask } from "../services/taskService.js";
+import {
+	getTasks,
+	createTask,
+	deleteTask,
+	updateTask,
+} from "../services/taskService.js";
 
 checkAuth();
 
@@ -27,11 +32,15 @@ taskList.addEventListener("click", handleTaskActions);
 
 let editingTaskId = null;
 
+let allTasks = [];
+
 async function loadTasks() {
 	try {
 		const data = await getTasks();
 
-		renderTasks(data.tasks);
+		allTasks = data.tasks;
+
+		renderTasks(allTasks);
 	} catch (error) {
 		console.error(error);
 	}
@@ -48,42 +57,69 @@ async function handleCreateTask(e) {
 	};
 
 	try {
-		await createTask(taskData);
+		if (editingTaskId) {
+			await updateTask(editingTaskId, taskData);
+		} else {
+			await createTask(taskData);
+		}
+
 		closeModal();
 		taskForm.reset();
-		loadTasks();
+		await loadTasks();
 	} catch (error) {
 		console.error(error);
 	}
 }
 
 async function handleTaskActions(e) {
-	if (!e.target.classList.contains("delete-btn")) {
-		return;
+	if (e.target.classList.contains("delete-btn")) {
+		const taskId = e.target.dataset.id;
+		const confirmed = confirm("Are you sure you want to delete this task?");
+
+		if (!confirmed) {
+			return;
+		}
+		try {
+			await deleteTask(taskId);
+			loadTasks();
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
-	const taskId = e.target.dataset.id;
-	const confirmed = confirm("Are you sure you want to delete this task?");
+	if (e.target.classList.contains("edit-btn")) {
+		const taskId = e.target.dataset.id;
 
-	if (!confirmed) {
-		return;
-	}
-	try {
-		await deleteTask(taskId);
-		loadTasks();
-	} catch (error) {
-		console.error(error);
+		const task = allTasks.find((task) => task._id === taskId);
+
+		if (!task) return;
+
+		editingTaskId = task._id;
+
+		titleInput.value = task.title;
+
+		descriptionInput.value = task.description;
+
+		categoryInput.value = task.category;
+
+		priorityInput.value = task.priority;
+
+		modalTitle.textContent = "Edit Task";
+
+		submitBtn.textContent = "Update";
+
+		taskModal.classList.remove("hidden");
 	}
 }
 
 function openModal() {
+	taskForm.reset();
+
 	editingTaskId = null;
 
 	modalTitle.textContent = "Create Task";
 
 	submitBtn.textContent = "Create";
-
-	taskForm.reset();
 
 	taskModal.classList.remove("hidden");
 }
@@ -96,6 +132,8 @@ function outsideClose(e) {
 
 function closeModal() {
 	taskModal.classList.add("hidden");
+
+	editingTaskId = null;
 }
 
 function renderTasks(tasks) {
