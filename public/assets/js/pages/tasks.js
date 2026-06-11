@@ -1,5 +1,5 @@
 import { checkAuth, logout } from "../utils/auth.js";
-import { getTasks, createTask } from "../services/taskService.js";
+import { getTasks, createTask, deleteTask } from "../services/taskService.js";
 
 checkAuth();
 
@@ -15,11 +15,17 @@ const descriptionInput = document.getElementById("description");
 const categoryInput = document.getElementById("category");
 const priorityInput = document.getElementById("priority");
 
+const modalTitle = document.getElementById("modal-title");
+const submitBtn = document.getElementById("submit-btn");
+
 logoutBtn.addEventListener("click", logout);
 createTaskBtn.addEventListener("click", openModal);
 cancelBtn.addEventListener("click", closeModal);
 taskModal.addEventListener("click", outsideClose);
 taskForm.addEventListener("submit", handleCreateTask);
+taskList.addEventListener("click", handleTaskActions);
+
+let editingTaskId = null;
 
 async function loadTasks() {
 	try {
@@ -51,7 +57,34 @@ async function handleCreateTask(e) {
 	}
 }
 
+async function handleTaskActions(e) {
+	if (!e.target.classList.contains("delete-btn")) {
+		return;
+	}
+
+	const taskId = e.target.dataset.id;
+	const confirmed = confirm("Are you sure you want to delete this task?");
+
+	if (!confirmed) {
+		return;
+	}
+	try {
+		await deleteTask(taskId);
+		loadTasks();
+	} catch (error) {
+		console.error(error);
+	}
+}
+
 function openModal() {
+	editingTaskId = null;
+
+	modalTitle.textContent = "Create Task";
+
+	submitBtn.textContent = "Create";
+
+	taskForm.reset();
+
 	taskModal.classList.remove("hidden");
 }
 
@@ -81,14 +114,15 @@ function renderTasks(tasks) {
 
                 <div class="task-actions">
                     <button 
-                    class="btn btn-primary"
+                    class="btn btn-primary edit-btn"
+                    data-id="${task._id}"
                     >
                         Edit
                     </button>
 
                     <button 
                     class="btn btn-primary delete-btn" 
-                    data-id=${task._id}
+                    data-id="${task._id}"
                     >
                         Delete
                     </button>

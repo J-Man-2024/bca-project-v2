@@ -312,3 +312,14 @@ Chart.js visualization using backend-generated analytics.
 ### AI Design
 
 Groq API consumed through backend layer.
+
+## Design Decision
+
+- Event delegation was used to handle actions on dynamically generated task cards.
+
+### Advantages
+
+- Reduces the number of event listeners.
+- Improves performance.
+- Automatically supports newly added tasks.
+- Simplifies code maintenance.

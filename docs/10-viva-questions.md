@@ -212,3 +212,7 @@ However, for password length specifically, once you're storing hashes, schema `m
 ### Why Reload After Creating?
 
 - After successfully creating a task, the application requests the latest tasks from the server and re-renders the UI to ensure consistency between the frontend and database.
+
+### Why didn't you attach click listeners directly to the Delete buttons?
+
+- The buttons are created dynamically after fetching tasks. Event delegation allows a single listener on the parent container to handle click events from all task cards, including newly created ones.
