@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/tasks.css">
+
+    <script type="module" src="../assets/js/pages/tasks.js"></script>
+
+    <title>Task Management System - Tasks</title>
+</head>
+<body>
+    <main>
+
+        <div class="container">
+
+            <div class="tasks-header">
+
+                <h1>
+                    Tasks
+                </h1>
+
+                <button 
+                id="logout-btn" 
+                class="btn btn-primary">
+                    Logout
+                </button>
+
+            </div>
+
+            <div class="controls-section">
+                
+                <button 
+                id="create-task-btn" 
+                class="btn btn-primary">
+                    Create Task
+                </button>
+
+                <div class="filters-section">
+
+                    <select id="status-filter" 
+                    class="input">
+                        <option value="">
+                            All Status
+                        </option>
+
+                        <option 
+                        value="Pending">
+                            Pending
+                        </option>
+
+                        <option 
+                        value="Completed">
+                            Completed
+                        </option>
+                    </select>
+
+                    <select id="category-filter" 
+                    class="input">
+                        <option value="">
+                            All Categories
+                        </option>
+
+                        <option 
+                        value="Study">
+                            Study
+                        </option>
+
+                        <option 
+                        value="Personal">
+                            Personal
+                        </option>
+
+                        <option 
+                        value="Work">
+                            Work
+                        </option>
+                    </select>
+
+                    <select id="priority-filter" 
+                    class="input">
+                        <option value="">
+                            All Priorities
+                        </option>
+
+                        <option value="Low">
+                            Low
+                        </option>
+
+                        <option value="Medium">
+                            Medium
+                        </option>
+
+                        <option value="High">
+                            High
+                        </option>
+                    </select>
+                </div>
+
+                <input 
+                type="text" 
+                id="search-input" 
+                class="input"
+                placeholder="Search tasks..."
+                >
+
+                <select 
+                id="sort-select" 
+                class="input"
+                >
+                    <option value="desc">
+                        Newest First
+                    </option>
+
+                    <option value="asc">
+                        Oldest First
+                    </option>
+                </select>
+            
+            </div>
+
+            <div class="task-list" id="task-list">
+                <!-- Task cards will come here -->
+            </div>
+
+            <div class="pagination">
+                <button 
+                id="prev-page-btn" 
+                class="btn btn-primary"
+                >
+                    Previous
+                </button>
+
+                <span id="current-page">
+                    Page 1
+                </span>
+
+                <button 
+                id="next-page-btn" 
+                class="btn btn-primary"
+                >
+                    Next
+                </button>
+            </div>
+
+        </div>
+    </main>
+</body>
+</html>
