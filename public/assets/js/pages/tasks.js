@@ -31,19 +31,37 @@ taskForm.addEventListener("submit", handleCreateTask);
 taskList.addEventListener("click", handleTaskActions);
 
 const searchInput = document.getElementById("search-input");
+const statusFilter = document.getElementById("status-filter");
+const categoryFilter = document.getElementById("category-filter");
+const priorityFilter = document.getElementById("priority-filter");
+const sortFilter = document.getElementById("sort-filter");
 
 let editingTaskId = null;
 
 let allTasks = [];
 
 let currentSearch = "";
+let currentStatus = "";
+let currentCategory = "";
+let currentPriority = "";
+let currentSortBy = "";
+let currentOrder = "";
 
 searchInput.addEventListener("input", handleSearch);
+statusFilter.addEventListener("change", handleFilters);
+categoryFilter.addEventListener("change", handleFilters);
+priorityFilter.addEventListener("change", handleFilters);
+sortFilter.addEventListener("change", handleSort);
 
 async function loadTasks() {
 	try {
 		const data = await getTasks({
 			search: currentSearch,
+			status: currentStatus,
+			category: currentCategory,
+			priority: currentPriority,
+			sortBy: currentSortBy,
+			order: currentOrder,
 		});
 
 		allTasks = data.tasks;
@@ -146,6 +164,27 @@ function closeModal() {
 
 function handleSearch() {
 	currentSearch = searchInput.value.trim();
+
+	loadTasks();
+}
+
+function handleFilters() {
+	currentStatus = statusFilter.value;
+	currentCategory = categoryFilter.value;
+	currentPriority = priorityFilter.value;
+
+	loadTasks();
+}
+
+function handleSort() {
+	const value = sortFilter.value;
+
+	if (!value) {
+		currentSortBy = "";
+		currentOrder = "";
+	} else {
+		[currentSortBy, currentOrder] = value.split("-");
+	}
 
 	loadTasks();
 }

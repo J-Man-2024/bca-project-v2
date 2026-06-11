@@ -107,15 +107,27 @@
                 >
 
                 <select 
-                id="sort-select" 
+                id="sort-filter" 
                 class="input"
                 >
-                    <option value="desc">
+                    <option value="">
+                        Default
+                    </option>
+
+                    <option value="createdAt-desc">
                         Newest First
                     </option>
 
-                    <option value="asc">
+                    <option value="createdAt-asc">
                         Oldest First
+                    </option>
+
+                    <option value="title-asc">
+                        Title (A-Z)
+                    </option>
+
+                    <option value="priority-asc">
+                        Priority
                     </option>
                 </select>
             
