@@ -153,6 +153,23 @@ async function handleTaskActions(e) {
 
 		taskModal.classList.remove("hidden");
 	}
+
+	if (e.target.classList.contains("status-btn")) {
+		const taskId = e.target.dataset.id;
+		const currentStatus = e.target.dataset.status;
+
+		const newStatus = currentStatus === "Pending" ? "Completed" : "Pending";
+
+		try {
+			await updateTask(taskId, {
+				status: newStatus,
+			});
+
+			await loadTasks();
+		} catch (error) {
+			console.error(error);
+		}
+	}
 }
 
 function openModal() {
@@ -256,6 +273,18 @@ function renderTasks(tasks) {
                     >
                         Delete
                     </button>
+
+					<button 
+						class="
+							btn 
+							btn-primary 
+							status-btn
+						"
+						data-id="${task._id}"
+						data-status="${task.status}"
+					>
+						${task.status === "Pending" ? "Complete" : "Undo"}
+					</button>
                 </div>
             </div>
         `;
