@@ -30,13 +30,21 @@ taskModal.addEventListener("click", outsideClose);
 taskForm.addEventListener("submit", handleCreateTask);
 taskList.addEventListener("click", handleTaskActions);
 
+const searchInput = document.getElementById("search-input");
+
 let editingTaskId = null;
 
 let allTasks = [];
 
+let currentSearch = "";
+
+searchInput.addEventListener("input", handleSearch);
+
 async function loadTasks() {
 	try {
-		const data = await getTasks();
+		const data = await getTasks({
+			search: currentSearch,
+		});
 
 		allTasks = data.tasks;
 
@@ -134,6 +142,12 @@ function closeModal() {
 	taskModal.classList.add("hidden");
 
 	editingTaskId = null;
+}
+
+function handleSearch() {
+	currentSearch = searchInput.value.trim();
+
+	loadTasks();
 }
 
 function renderTasks(tasks) {

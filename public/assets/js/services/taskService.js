@@ -1,10 +1,12 @@
 import { API_BASE_URL } from "../config/api.js";
 import { getToken } from "../utils/storage.js";
 
-export async function getTasks() {
+export async function getTasks(queryParams = {}) {
 	const token = getToken();
 
-	const response = await fetch(`${API_BASE_URL}/tasks`, {
+	const queryString = new URLSearchParams(queryParams).toString();
+
+	const response = await fetch(`${API_BASE_URL}/tasks?${queryString}`, {
 		headers: {
 			Authorization: `Bearer ${token}`,
 		},
