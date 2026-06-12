@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script>
+	const savedTheme =
+		localStorage.getItem("theme");
+
+	if (savedTheme) {
+		document.documentElement.setAttribute(
+			"data-theme",
+			savedTheme
+		);
+	}
+</script>
+
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/analytics.css">
+
+    <script type="module" src="../assets/js/pages/analytics.js"></script>
+
+    <title>Task Management System - Analytics</title>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div id="navbar-container"></div>
+            
+            <div class="charts-grid">
+
+                <section class="chart-card">
+
+                    <h2>Status Distribution</h2>
+
+                    <div class="chart-container">
+                        <canvas id="status-chart"></canvas>
+                    </div>
+
+                </section>
+
+                <section class="chart-card">
+
+                    <h2>Category Distribution</h2>
+
+                    <div class="chart-container">
+                        <canvas id="category-chart"></canvas>
+                    </div>
+
+                </section>
+
+            </div>
+
+                <section class="chart-card">
+
+                    <h2>Weekly Completion</h2>
+
+                    <div class="chart-container">
+                        <canvas id="weekly-chart"></canvas>
+                    </div>
+
+                </section>
+
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

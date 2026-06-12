@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <script>
+	const savedTheme =
+		localStorage.getItem("theme");
+
+	if (savedTheme) {
+		document.documentElement.setAttribute(
+			"data-theme",
+			savedTheme
+		);
+	}
+</script>
+
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/tasks.css">
 
@@ -16,19 +28,7 @@
 
         <div class="container">
 
-            <div class="tasks-header">
-
-                <h1>
-                    Tasks
-                </h1>
-
-                <button 
-                id="logout-btn" 
-                class="btn btn-primary">
-                    Logout
-                </button>
-
-            </div>
+            <div id="navbar-container"></div>
 
             <div class="controls-section">
                 

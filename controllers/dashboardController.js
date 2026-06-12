@@ -16,6 +16,12 @@ const getDashboardStats = async (req, res) => {
 			status: "Pending",
 		});
 
+		const recentTasks = await Task.find({
+			user: req.user._id,
+		})
+			.sort({ createdAt: -1 })
+			.limit(5);
+
 		let completionPercentage = 0;
 
 		if (totalTasks > 0) {
@@ -29,6 +35,7 @@ const getDashboardStats = async (req, res) => {
 			completedTasks,
 			pendingTasks,
 			completionPercentage,
+			recentTasks,
 		});
 	} catch (error) {
 		res.status(500).json({

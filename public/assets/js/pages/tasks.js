@@ -1,3 +1,6 @@
+import { renderNavbar } from "../components/navbar.js";
+import { initializeTheme, toggleTheme } from "../utils/theme.js";
+import { showToast } from "../components/toast.js";
 import { checkAuth, logout } from "../utils/auth.js";
 import {
 	getTasks,
@@ -7,8 +10,15 @@ import {
 } from "../services/taskService.js";
 
 checkAuth();
+initializeTheme();
+renderNavbar();
+
+const themeToggle = document.getElementById("theme-toggle");
+
+themeToggle.addEventListener("click", toggleTheme);
 
 const logoutBtn = document.getElementById("logout-btn");
+logoutBtn.addEventListener("click", logout);
 const taskList = document.getElementById("task-list");
 const createTaskBtn = document.getElementById("create-task-btn");
 const taskModal = document.getElementById("task-modal");
@@ -102,8 +112,11 @@ async function handleCreateTask(e) {
 	try {
 		if (editingTaskId) {
 			await updateTask(editingTaskId, taskData);
+			showToast("Task Updated Successfully");
 		} else {
 			await createTask(taskData);
+
+			showToast("Task Created Successfully");
 		}
 
 		closeModal();
@@ -124,6 +137,7 @@ async function handleTaskActions(e) {
 		}
 		try {
 			await deleteTask(taskId);
+			showToast("Task Deleted Successfully");
 			loadTasks();
 		} catch (error) {
 			console.error(error);
@@ -164,7 +178,7 @@ async function handleTaskActions(e) {
 			await updateTask(taskId, {
 				status: newStatus,
 			});
-
+			showToast(`Task marked as ${newStatus}`);
 			await loadTasks();
 		} catch (error) {
 			console.error(error);
