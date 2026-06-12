@@ -2,6 +2,7 @@ import { renderNavbar } from "../components/navbar.js";
 import { initializeTheme, toggleTheme } from "../utils/theme.js";
 import { checkAuth, logout } from "../utils/auth.js";
 import { getDashboardStats } from "../services/dashboardService.js";
+import { getInsights } from "../services/aiService.js";
 
 checkAuth();
 initializeTheme();
@@ -27,7 +28,13 @@ const completionPercentageElement = document.getElementById(
 
 const recentTaskList = document.getElementById("recent-tasks-list");
 
-logoutBtn.addEventListener("click", logout);
+const aiInsightElement = document.getElementById("ai-insight");
+
+const insight = await getInsights();
+
+aiInsightElement.innerHTML = insight.insight
+	.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+	.replace(/\n/g, "<br>");
 
 function renderRecentTasks(tasks) {
 	recentTaskList.innerHTML = "";
@@ -45,7 +52,18 @@ function renderRecentTasks(tasks) {
 				</span>
 
 			</div>
+			
 		`;
+	}
+}
+
+async function loadInsights() {
+	try {
+		const insight = await getInsights();
+
+		aiInsightElement.textContent = insight.insight;
+	} catch (error) {
+		console.error(error);
 	}
 }
 
